@@ -1,0 +1,44 @@
+
+window.onload = function() {
+  console.log('test1')
+  let buttonData = [
+    {
+      name: "Make",
+      text: `Text for Make`
+    },
+    {
+      name: "Airtable",
+      text: `Text for Airtable`
+    }
+  ];
+
+  let textArea = document.querySelector(".up-textarea");
+
+
+  if (textArea) {
+    buttonData.forEach((button, index) => {
+      // Create a new button element
+      let btn = document.createElement("button");
+      btn.className = "btn";
+      btn.style = "background-color: blue; color: white; border-radius: 5px;";
+      btn.innerText = button.name;
+
+      // Add an event listener to the button
+      btn.addEventListener("click", () => {
+        // Insert the corresponding text into the textArea when the button is clicked
+        textArea.value += button.text;
+        //document.execCommand('insertText', false, `${button.text}`);
+      });
+
+      // Create the container div
+      let div = document.createElement("div");
+      div.className = "extension_container";
+      div.style = "display: flex; align-items: center; margin-top: 20px;";
+
+      // Append the button to the div
+      div.appendChild(btn);
+
+      // Append the div to the DOM after the textArea
+      textArea.insertAdjacentElement("afterend", div);
+    });
+  }};
